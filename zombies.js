@@ -224,10 +224,10 @@ class Player {
    * @param {Weapon} itemToEquip  The weapon item to equip.
    */
 
-  equip (itemToEquip){
+  equip(itemToEquip) {
     let index = this.getPack().indexOf(itemToEquip)
     let spliced = this.getPack().splice(index, 1, this.equipped)[0]
-    if (itemToEquip instanceof (Weapon) && index !== -1){
+    if (itemToEquip instanceof(Weapon) && index !== -1) {
       // if itemtoequip is a weapon and it's in my pack
       if (this.equipped !== false) {
         this.equipped = spliced;
@@ -259,14 +259,14 @@ class Player {
    * @param {Food} itemToEat  The food item to eat.
    */
 
-eat (itemToEat){
-  let index = this.getPack().indexOf(itemToEat)
-  if (this.getPack().includes(itemToEat) && itemToEat instanceof Food && index !== -1) {
-    let splicedEat = this.getPack().splice(index, 1)
-      this.health += itemToEat.energy 
-      if(this.getMaxHealth() < this.health) {
+  eat(itemToEat) {
+    let index = this.getPack().indexOf(itemToEat)
+    if (this.getPack().includes(itemToEat) && itemToEat instanceof Food && index !== -1) {
+      let splicedEat = this.getPack().splice(index, 1)
+      this.health += itemToEat.energy
+      if (this.getMaxHealth() < this.health) {
         this.health = this.getMaxHealth()
-     }
+      }
     }
   }
 
@@ -286,13 +286,13 @@ eat (itemToEat){
    * @param {Item/Weapon/Food} item   The item to use.
    */
 
-   useItem(item){
-     if (item instanceof Food){
-       this.eat(item)
-     } else if (item instanceof Weapon){
-       this.equip(item)
-     }
-   }
+  useItem(item) {
+    if (item instanceof Food) {
+      this.eat(item)
+    } else if (item instanceof Weapon) {
+      this.equip(item)
+    }
+  }
 
 
 
@@ -311,167 +311,205 @@ eat (itemToEat){
    * @return {string/boolean}   Weapon name or false if nothing is equipped.
    */
 
-   equippedWith(){
-     console.log(this.name);
-     if (this.equipped === false){
-       console.log("You ain't go no weapon fool.");
-       return false;
-     } else {
+  equippedWith() {
+    console.log(this.name);
+    if (this.equipped === false) {
+      console.log("You ain't go no weapon fool.");
+      return false;
+    } else {
       console.log(this.equipped.name);
       return this.equipped.name;
-     }
+    }
 
-   }
+  }
 
 } // close Player class  
 
-  /**
-   * Class => Zombie(health, strength, speed)
-   * -----------------------------
-   * Creates a normal zombie.
-   *
-   * @name Zombie
-   * @param {number} health           The zombie's health.
-   * @param {number} strength         The zombie's strength.
-   * @param {number} speed            The zombie's speed.
-   * @private {number} maxHealth      Default value should be set to `health`.
-   * @property {number} health
-   * @property {number} strength
-   * @property {number} speed
-   * @property {boolean} isAlive      Default value should be `true`.
-   */
+/**
+ * Class => Zombie(health, strength, speed)
+ * -----------------------------
+ * Creates a normal zombie.
+ *
+ * @name Zombie
+ * @param {number} health           The zombie's health.
+ * @param {number} strength         The zombie's strength.
+ * @param {number} speed            The zombie's speed.
+ * @private {number} maxHealth      Default value should be set to `health`.
+ * @property {number} health
+ * @property {number} strength
+ * @property {number} speed
+ * @property {boolean} isAlive      Default value should be `true`.
+ */
 
-
-  /**
-   * Class => FastZombie(health, strength, speed)
-   * -----------------------------
-   * Creates a fast zombie.
-   *
-   * The FastZombie class constructor will call
-   *   the super class (Zombie) constructor
-   *   while passing in the 3 Zombie constructor params
-   *
-   * @name FastZombie
-   * @param {number} health           The zombie's health.
-   * @param {number} strength         The zombie's strength.
-   * @param {number} speed            The zombie's speed.
-   */
-
-
-  /**
-   * FastZombie Extends Zombie Class
-   * -----------------------------
-   */
-
-
-
-  /**
-   * Class => StrongZombie(health, strength, speed)
-   * -----------------------------
-   * Creates a strong zombie.
-   *
-   * The StrongZombie class constructor will call
-   *   the super class (Zombie) constructor
-   *   while passing in the 3 Zombie constructor params
-   *
-   * @name StrongZombie
-   * @param {number} health           The zombie's health.
-   * @param {number} strength         The zombie's strength.
-   * @param {number} speed            The zombie's speed.
-   */
-
-
-  /**
-   * StrongZombie Extends Zombie Class
-   * -----------------------------
-   */
-
-
-
-  /**
-   * Class => RangedZombie(health, strength, speed)
-   * -----------------------------
-   * Creates a ranged zombie.
-   *
-   * The RangedZombie class constructor will call
-   *   the super class (Zombie) constructor
-   *   while passing in the 3 Zombie constructor params
-   *
-   * @name RangedZombie
-   * @param {number} health           The zombie's health.
-   * @param {number} strength         The zombie's strength.
-   * @param {number} speed            The zombie's speed.
-   */
-
-
-  /**
-   * RangedZombie Extends Zombie Class
-   * -----------------------------
-   */
-
-
-
-  /**
-   * Class => ExplodingZombie(health, strength, speed)
-   * -----------------------------
-   * Creates an exploding zombie.
-   *
-   * The ExplodingZombie class constructor will call
-   *   the super class (Zombie) constructor
-   *   while passing in the 3 Zombie constructor params
-   *
-   * @name ExplodingZombie
-   * @param {number} health           The zombie's health.
-   * @param {number} strength         The zombie's strength.
-   * @param {number} speed            The zombie's speed.
-   */
-
-
-  /**
-   * ExplodingZombie Extends Zombie Class
-   * -----------------------------
-   */
-
-
-
-
-  /**
-   * Sample run.
-   * Feel free to edit this and check your game logic.
-   */
-  function runGame() {
-    // var player = new Player("Joan", 500, 30, 70);
-    // var zombie = new Zombie(40, 50, 20);
-    // var charger = new FastZombie(175, 25, 60);
-    // var tank = new StrongZombie(250, 100, 15);
-    // var spitter = new RangedZombie(150, 20, 20);
-    // var boomer = new ExplodingZombie(50, 15, 10);
-
-    // var shovel = new Weapon("shovel", 15);
-    // var sandwich = new Food("sandwich", 30);
-    // var chainsaw = new Weapon("chainsaw", 25);
-
-    // player.takeItem(shovel);
-    // player.takeItem(sandwich);
-    // player.takeItem(chainsaw);
-    // player.discardItem(new Weapon("scythe", 21));
-    // player.discardItem(shovel);
-    // player.checkPack();
-    // player.takeItem(shovel);
-    // player.checkPack();
-
-    // player.equippedWith();
-    // player.useItem(chainsaw);
-    // player.equippedWith();
-    // player.checkPack();
-
-    // player.useItem(shovel);
-    // player.equippedWith();
-    // player.checkPack();
-
-    // player.health = 487;
-    // console.log("Before health: " + player.health);
-    // player.useItem(sandwich);
-    // console.log("After health: " + player.health);
-    // player.checkPack();
+class Zombie {
+  constructor(health, strength, speed){
+    this.health = health;
+    this.strength = strength;
+    this.speed = speed;
+    this._maxHealth = health;
+    this.isAlive = true;
   }
+}
+
+
+
+
+/**
+ * Class => FastZombie(health, strength, speed)
+ * -----------------------------
+ * Creates a fast zombie.
+ *
+ * The FastZombie class constructor will call
+ *   the super class (Zombie) constructor
+ *   while passing in the 3 Zombie constructor params
+ *
+ * @name FastZombie
+ * @param {number} health           The zombie's health.
+ * @param {number} strength         The zombie's strength.
+ * @param {number} speed            The zombie's speed.
+ */
+
+class FastZombie extends Zombie {
+  constructor(health, strength,speed) {
+    super(health, strength, speed);
+  };
+  
+}
+
+/**
+ * FastZombie Extends Zombie Class
+ * -----------------------------
+ */
+
+
+
+/**
+ * Class => StrongZombie(health, strength, speed)
+ * -----------------------------
+ * Creates a strong zombie.
+ *
+ * The StrongZombie class constructor will call
+ *   the super class (Zombie) constructor
+ *   while passing in the 3 Zombie constructor params
+ *
+ * @name StrongZombie
+ * @param {number} health           The zombie's health.
+ * @param {number} strength         The zombie's strength.
+ * @param {number} speed            The zombie's speed.
+ */
+
+
+
+/**
+ * StrongZombie Extends Zombie Class
+ * -----------------------------
+ */
+
+class StrongZombie extends Zombie {
+  constructor(health, strength,speed) {
+    super(health, strength, speed);
+  };
+}
+
+
+
+
+/**
+ * Class => RangedZombie(health, strength, speed)
+ * -----------------------------
+ * Creates a ranged zombie.
+ *
+ * The RangedZombie class constructor will call
+ *   the super class (Zombie) constructor
+ *   while passing in the 3 Zombie constructor params
+ *
+ * @name RangedZombie
+ * @param {number} health           The zombie's health.
+ * @param {number} strength         The zombie's strength.
+ * @param {number} speed            The zombie's speed.
+ */
+
+
+/**
+ * RangedZombie Extends Zombie Class
+ * -----------------------------
+ */
+
+class RangedZombie extends Zombie {
+  constructor(health, strength,speed) {
+    super(health, strength, speed);
+  };
+}
+
+
+
+
+/**
+ * Class => ExplodingZombie(health, strength, speed)
+ * -----------------------------
+ * Creates an exploding zombie.
+ *
+ * The ExplodingZombie class constructor will call
+ *   the super class (Zombie) constructor
+ *   while passing in the 3 Zombie constructor params
+ *
+ * @name ExplodingZombie
+ * @param {number} health           The zombie's health.
+ * @param {number} strength         The zombie's strength.
+ * @param {number} speed            The zombie's speed.
+ */
+
+
+/**
+ * ExplodingZombie Extends Zombie Class
+ * -----------------------------
+ */
+class ExplodingZombie extends Zombie {
+  constructor(health, strength,speed) {
+    super(health, strength, speed);
+  };
+}
+
+
+
+
+/**
+ * Sample run.
+ * Feel free to edit this and check your game logic.
+ */
+function runGame() {
+  // var player = new Player("Joan", 500, 30, 70);
+  // var zombie = new Zombie(40, 50, 20);
+  // var charger = new FastZombie(175, 25, 60);
+  // var tank = new StrongZombie(250, 100, 15);
+  // var spitter = new RangedZombie(150, 20, 20);
+  // var boomer = new ExplodingZombie(50, 15, 10);
+
+  // var shovel = new Weapon("shovel", 15);
+  // var sandwich = new Food("sandwich", 30);
+  // var chainsaw = new Weapon("chainsaw", 25);
+
+  // player.takeItem(shovel);
+  // player.takeItem(sandwich);
+  // player.takeItem(chainsaw);
+  // player.discardItem(new Weapon("scythe", 21));
+  // player.discardItem(shovel);
+  // player.checkPack();
+  // player.takeItem(shovel);
+  // player.checkPack();
+
+  // player.equippedWith();
+  // player.useItem(chainsaw);
+  // player.equippedWith();
+  // player.checkPack();
+
+  // player.useItem(shovel);
+  // player.equippedWith();
+  // player.checkPack();
+
+  // player.health = 487;
+  // console.log("Before health: " + player.health);
+  // player.useItem(sandwich);
+  // console.log("After health: " + player.health);
+  // player.checkPack();
+}
