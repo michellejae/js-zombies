@@ -8,6 +8,14 @@
  * @property {string} name
  */
 
+function Item(name) {
+  this.name = name;
+}
+
+Item.prototype.name = name;
+
+
+
 
 /**
  * Class => Weapon(name, damage)
@@ -31,7 +39,12 @@
  * -----------------------------
  */
 
-
+function Weapon(name, damage) {
+  Item.call(this, name);
+  this.damage = damage
+}
+Weapon.prototype = Object.create(Item.prototype);
+Weapon.prototype.constructor = Weapon;
 
 /**
  * Class => Food(name, energy)
@@ -48,6 +61,14 @@
  * @param {number} energy     The energy the food provides.
  * @property {number} energy
  */
+
+function Food(name, energy) {
+  Item.call(this, name);
+  this.energy = energy
+}
+
+Food.prototype = Object.create(Item.prototype);
+Food.prototype.constructor = Food;
 
 
 /**
@@ -79,6 +100,24 @@
  * @property {method} getMaxHealth         Returns private variable `maxHealth`.
  */
 
+function Player(name, health, strength, speed) {
+  this.name = name;
+  this.health = health;
+  this.strength = strength;
+  this.speed = speed;
+  _pack = [];
+  _maxHealth = health;
+  this.isAlive = true;
+  this.equipped = false;
+  this.getPack = function (){
+    return _pack;
+  }
+  this.getMaxHealth = function (){
+    return _maxHealth;
+  }
+}
+
+
 
 /**
  * Player Class Method => checkPack()
@@ -91,6 +130,10 @@
  *
  * @name checkPack
  */
+
+Player.prototype.checkPack = function () {
+  console.log(this.getPack())
+}
 
 
 /**
@@ -111,6 +154,16 @@
  * @return {boolean} true/false     Whether player was able to store item in pack.
  */
 
+Player.prototype.takeItem = function (item) {
+  if (this.getPack().length < 3) {
+    this.getPack().push(item);
+    console.log(Player.prototype.name, item);
+    return true
+  } else {
+    console.log('Sucks to suck, pack is full');
+    return false
+  }
+}
 
 /**
  * Player Class Method => discardItem(item)
