@@ -179,7 +179,7 @@ describe('Player', function() {
       player.takeItem(apple);
       player.takeItem(banana);
       sinon.assert.called(console.log);
-
+      
       player.getPack().should.contain(torch);
       player.getPack().should.contain(dagger);
       player.getPack().should.contain(apple);
