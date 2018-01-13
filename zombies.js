@@ -34,7 +34,6 @@ class Item {
 class Weapon extends Item {
   constructor(name, damage) {
     super(name);
-    this.name = name;
     this.damage = damage;
   }
 }
@@ -226,15 +225,18 @@ class Player {
 
   equip(itemToEquip) {
     let index = this.getPack().indexOf(itemToEquip)
-    let spliced = this.getPack().splice(index, 1, this.equipped)[0]
+    
     if (itemToEquip instanceof(Weapon) && index !== -1) {
       // if itemtoequip is a weapon and it's in my pack
-      if (this.equipped !== false) {
-        this.equipped = spliced;
-        // if item is equipped with another weapon, replace it with your itemtoequip
+      if (this.equipped === false) {
+        this.equipped = itemToEquip;
+        this.discardItem(itemToEquip)
+        // if your player is not equipped, equip it with the item
       } else {
-        // 
+        this.getPack().splice(index, 1, this.equipped)
         this.equipped = itemToEquip
+        // if your player is already equipped, the this.equipped will be set to the item so here you'll change it to itemtoequip
+        
       }
     }
   }
@@ -261,8 +263,8 @@ class Player {
 
   eat(itemToEat) {
     let index = this.getPack().indexOf(itemToEat)
-    if (this.getPack().includes(itemToEat) && itemToEat instanceof Food && index !== -1) {
-      let splicedEat = this.getPack().splice(index, 1)
+    if (itemToEat instanceof Food && index !== -1) {
+      this.getPack().splice(index, 1)
       this.health += itemToEat.energy
       if (this.getMaxHealth() < this.health) {
         this.health = this.getMaxHealth()
