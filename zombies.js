@@ -224,11 +224,12 @@ Player.prototype.discardItem = function (item) {
 
 Player.prototype.equip = function (itemToEquip){
   let index = this.getPack().indexOf(itemToEquip);
-  let spliced = this.getPack().splice(index, 1, this.equipped)[0];
   if (itemToEquip instanceof (Weapon) && index !== -1){
-    if (this.equipped !== false){
-      this.equipped = spliced
+    if (this.equipped === false){
+      this.equipped = itemToEquip;
+      this.discardItem(itemToEquip)
     } else {
+      this.getPack().splice(index, 1, this.equipped)
       this.equipped = itemToEquip
     }
   }
@@ -256,7 +257,7 @@ Player.prototype.equip = function (itemToEquip){
 
 Player.prototype.eat = function (itemToEat){
   let index = this.getPack().indexOf(itemToEat);
-  if (this.getPack().includes(itemToEat) && itemToEat instanceof Food && index !== -1){
+  if (itemToEat instanceof Food && index !== -1){
     this.getPack().splice(index, 1);
     this.health += itemToEat.energy;
     if(this.getMaxHealth() < this.health){
